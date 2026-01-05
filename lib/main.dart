@@ -26,19 +26,106 @@ class PortfolioScreen extends StatelessWidget {
       body :
       Center(
         child: 
-        Column(
-          children: [
-            CircleAvatar(radius: 100, backgroundImage: AssetImage("assets/riya.jpeg"),),
-            SizedBox(height: 20,),
-            const Text(
-              "Riya Jain",
-              style : TextStyle(
-                fontSize: 30 , fontWeight: FontWeight.bold
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              CircleAvatar(radius: 100, backgroundImage: AssetImage("assets/riya.jpeg"),),
+              SizedBox(height: 20,),
+              const Text(
+                "Riya Jain",
+                style : TextStyle(
+                  fontSize: 30 , fontWeight: FontWeight.bold
+                )
+              ),
+              const SizedBox(height : 10,),
+          
+              const Text(
+                "CSEAI Student | Flutter Developer",
+                style: TextStyle(fontSize: 16 , color: Colors.black,),
+              ),
+              const SizedBox(height : 20,),
+              const Divider(),
+          
+              const Align(
+                alignment: Alignment.centerLeft,
+                child : Text(
+                  "Skills",
+                  style : TextStyle(
+                    fontSize : 22 , fontWeight: FontWeight.bold
+                  )
+                )
+              ),
+              const SizedBox(height : 16),
+              SkillCard(
+                icon : Icons.phone_android,
+                title : "Flutter",
+                subtitle : "Cross-Platform App Development",
+              ),
+              SkillCard(
+                icon : Icons.code,
+                title : "DSA",
+                subtitle : "Problem solving",
               )
-            )
-          ],)
+              ,
+              SkillCard(
+                icon : Icons.web,
+                title : "Web Development",
+                subtitle : "HTML , CSS", 
+              )
+            ],),
+        )
+      )
+
+    );
+    
+  }
+}
+class SkillCard extends StatelessWidget{
+  final IconData icon;
+  final String title;
+  final String subtitle;
+
+  SkillCard({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context){
+    return Card(
+      elevation: 3,
+      margin : const EdgeInsets.only(bottom : 12),
+      child : Padding(
+        padding: const EdgeInsets.all(16.0),
+        child : Row(
+          children: [
+            Icon(icon , size : 40 , color: Colors.blue),
+            const SizedBox(width: 16,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title , 
+                  style: const TextStyle(
+                    fontSize : 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height : 4),
+                Text(subtitle , style : const TextStyle(
+                  fontSize : 18,
+                  fontWeight: FontWeight.bold
+                )
+                )
+            ],)
+          ],
+
+        )
       )
 
     );
   }
+
 }
