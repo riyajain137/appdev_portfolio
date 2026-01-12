@@ -1,3 +1,4 @@
+import 'package:first_app/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/project_screen.dart';
 
@@ -56,7 +57,7 @@ class PortfolioScreen extends StatelessWidget {
               const SizedBox(height: 16),
               SkillCard(
                 icon: Icons.phone_android,
-                title: "Flr",
+                title: "Flutter",
                 subtitle: "Cross-Platform App Developer",
               ),
               SkillCard(
@@ -80,6 +81,18 @@ class PortfolioScreen extends StatelessWidget {
                   );
                 },
                 child: const Text("View Projects"),
+              ),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ContactScreen(),
+                    ),
+                  );
+                },
+                child: const Text("Contact Me"),
               ),
             ],
           ),
