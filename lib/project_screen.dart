@@ -32,7 +32,7 @@ class ProjectScreen extends StatelessWidget {
   }
 }
 
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   final String title;
   final String subtitle;
   final IconData icon;
@@ -43,7 +43,12 @@ class ProjectCard extends StatelessWidget {
     required this.subtitle,
     required this.icon,
   });
+  @override
+  State<ProjectCard> createState() => _ProjectCardState();
+}
 
+class _ProjectCardState extends State<ProjectCard> {
+  bool isLiked = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -56,16 +61,32 @@ class ProjectCard extends StatelessWidget {
             MaterialPageRoute(
               builder:
                   (context) => ProjectDetailScreen(
-                    title: title,
-                    subtitle: subtitle,
-                    icon: icon,
+                    title: widget.title,
+                    subtitle: widget.subtitle,
+                    icon: widget.icon,
                   ),
             ),
           );
         },
-        leading: Icon(icon, size: 40, color: Colors.blue),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(subtitle),
+        leading: Icon(widget.icon, size: 40, color: Colors.blue),
+        title: Text(widget.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(widget.subtitle),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [ 
+            IconButton(
+              icon: Icon(
+                isLiked ? Icons.star : Icons.star_outline,
+                color: Colors.amber,
+              ),
+              onPressed: () {
+                setState(() {
+                  isLiked = !isLiked;
+                });
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

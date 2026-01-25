@@ -18,13 +18,38 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class PortfolioScreen extends StatelessWidget {
+class PortfolioScreen extends StatefulWidget {
   const PortfolioScreen({super.key});
 
   @override
+  State<PortfolioScreen> createState() => _PortfolioScreenState();
+}
+
+class _PortfolioScreenState extends State<PortfolioScreen> {
+  bool isDarkMode = false;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("My Portfolio"), centerTitle: true),
+      backgroundColor: isDarkMode ? Colors.black : Colors.white,
+      appBar: AppBar(
+        title: const Text("My Portfolio"),
+        centerTitle: true,
+        backgroundColor: isDarkMode ? Colors.grey : Colors.blue,
+        actions: [
+          IconButton(
+            icon: Icon(
+              isDarkMode ? Icons.dark_mode : Icons.light_mode,
+              color: Colors.white,
+            ),
+            onPressed:
+                () => {
+                  setState(() {
+                    isDarkMode = !isDarkMode;
+                  }),
+                },
+          ),
+        ],
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -40,9 +65,12 @@ class PortfolioScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
 
-              const Text(
+              Text(
                 "CSEAI Student | Flutter Developer",
-                style: TextStyle(fontSize: 16, color: Colors.black),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
               const SizedBox(height: 20),
               const Divider(),
@@ -59,16 +87,19 @@ class PortfolioScreen extends StatelessWidget {
                 icon: Icons.phone_android,
                 title: "Flutter",
                 subtitle: "Cross-Platform App Developer",
+                isDarkMode: isDarkMode,
               ),
               SkillCard(
                 icon: Icons.code,
                 title: "DSA",
                 subtitle: "Problem solving",
+                isDarkMode: isDarkMode,
               ),
               SkillCard(
                 icon: Icons.web,
                 title: "Web Development",
                 subtitle: "HTML , CSS",
+                isDarkMode: isDarkMode,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -106,17 +137,20 @@ class SkillCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
+  final bool isDarkMode;
 
   SkillCard({
     super.key,
     required this.icon,
     required this.title,
     required this.subtitle,
+    required this.isDarkMode
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color : isDarkMode ? Colors.grey : Colors.white,
       elevation: 3,
       margin: const EdgeInsets.only(bottom: 12),
       child: Padding(
@@ -130,17 +164,19 @@ class SkillCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style:  TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color : isDarkMode ? Colors.white : Colors.black
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color : isDarkMode ? Colors.white70 : Colors.black87,
                   ),
                 ),
               ],
