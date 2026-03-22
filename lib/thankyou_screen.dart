@@ -14,7 +14,7 @@ class ThankyouScreen extends StatelessWidget {
             Icon(Icons.check_circle, size: 80, color: Colors.green),
             const SizedBox(height: 20),
             Text(
-              "Message Sent Successfully",
+              "Message Sent Successfully <3",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],

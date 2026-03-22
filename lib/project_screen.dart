@@ -22,7 +22,7 @@ class ProjectScreen extends StatelessWidget {
             icon: Icons.cloud,
           ),
           ProjectCard(
-            title: "Todo app",
+            title: "Todo app 5" ,
             subtitle: "Task Management Application",
             icon: Icons.check_circle,
           ),
