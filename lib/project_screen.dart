@@ -12,7 +12,7 @@ class ProjectScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: const [
           ProjectCard(
-            title: "Portfolio App",
+            title: "Portfolio App 5",
             subtitle: "Personal Portfolio App built using Flutter",
             icon: Icons.person,
           ),
